@@ -1,0 +1,87 @@
+.mt5-card{
+
+margin-top:25px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:rgba(18,18,18,.75);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,0,70,.25);
+
+box-shadow:0 0 25px rgba(255,0,70,.15);
+
+}
+
+.mt5-header{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+margin-bottom:20px;
+
+color:white;
+
+}
+
+.mt5-header svg{
+
+font-size:28px;
+
+color:#ff004d;
+
+}
+
+.mt5-header h3{
+
+margin:0;
+
+}
+
+.mt5-header span{
+
+color:#00ff88;
+
+}
+
+.mt5-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+}
+
+.mt5-box{
+
+padding:18px;
+
+border-radius:15px;
+
+background:#191919;
+
+text-align:center;
+
+}
+
+.mt5-box small{
+
+color:#888;
+
+}
+
+.mt5-box h2{
+
+margin-top:10px;
+
+color:#ff004d;
+
+}

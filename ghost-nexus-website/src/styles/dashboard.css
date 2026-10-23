@@ -1,0 +1,1098 @@
+/* =========================================================
+   GHOST NEXUS WEBSITE
+   LIVE MARKET DASHBOARD
+   Public Website Component
+   Glass + Neon + Smooth UI
+========================================================= */
+
+.ghost-live-dashboard {
+  position: relative;
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 80px 0;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   BACKGROUND GLOW
+========================================================= */
+
+.ghost-live-dashboard::before {
+  content: "";
+  position: absolute;
+
+  width: 500px;
+  height: 500px;
+
+  left: -250px;
+  top: 80px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 23, 68, 0.12),
+      transparent 70%
+    );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+
+.ghost-live-dashboard::after {
+  content: "";
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  right: -220px;
+  bottom: 0;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(155, 92, 255, 0.1),
+      transparent 70%
+    );
+
+  filter: blur(35px);
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.ghost-live-dashboard-header {
+  position: relative;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 25px;
+
+  z-index: 2;
+}
+
+
+.ghost-live-dashboard-heading {
+  max-width: 650px;
+}
+
+
+.ghost-live-dashboard-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  color: #ff3158;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+.ghost-live-dashboard-eyebrow-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ff3158;
+
+  box-shadow:
+    0 0 8px #ff3158,
+    0 0 18px rgba(255, 23, 68, 0.55);
+
+  animation: ghostLivePulse 1.7s infinite;
+}
+
+
+@keyframes ghostLivePulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+
+.ghost-live-dashboard-title {
+  margin: 0;
+
+  font-size:
+    clamp(28px, 5vw, 52px);
+
+  line-height: 0.98;
+
+  font-weight: 900;
+
+  letter-spacing: -0.055em;
+}
+
+
+.ghost-live-dashboard-title span {
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #ff3158,
+      #9b5cff
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+
+.ghost-live-dashboard-description {
+  max-width: 620px;
+
+  margin: 15px 0 0;
+
+  color:
+    rgba(255, 255, 255, 0.48);
+
+  font-size: 14px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   ONLINE STATUS
+========================================================= */
+
+.ghost-live-dashboard-status {
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 14px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(0, 255, 157, 0.045);
+
+  border:
+    1px solid
+    rgba(0, 255, 157, 0.14);
+
+  color: #00ff9d;
+
+  font-size: 10px;
+  font-weight: 900;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  box-shadow:
+    0 0 20px
+    rgba(0, 255, 157, 0.035);
+}
+
+
+.ghost-live-dashboard-status-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #00ff9d;
+
+  box-shadow:
+    0 0 8px #00ff9d,
+    0 0 15px rgba(0, 255, 157, 0.5);
+}
+
+
+/* =========================================================
+   MARKET CARDS
+========================================================= */
+
+.ghost-market-grid {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 12px;
+
+  z-index: 2;
+}
+
+
+.ghost-market-card {
+  position: relative;
+
+  min-height: 155px;
+
+  padding: 19px;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter:
+    blur(22px)
+    saturate(140%);
+
+  -webkit-backdrop-filter:
+    blur(22px)
+    saturate(140%);
+
+  box-shadow:
+    0 18px 50px
+    rgba(0, 0, 0, 0.2);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+
+.ghost-market-card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(255, 23, 68, 0.22);
+
+  box-shadow:
+    0 25px 65px
+    rgba(0, 0, 0, 0.28),
+    0 0 30px
+    rgba(255, 23, 68, 0.055);
+}
+
+
+.ghost-market-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 120px;
+  height: 120px;
+
+  right: -60px;
+  bottom: -60px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 23, 68, 0.1),
+      transparent 70%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MARKET TOP
+========================================================= */
+
+.ghost-market-card-top {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+
+.ghost-market-symbol {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  font-size: 12px;
+  font-weight: 900;
+
+  letter-spacing: 0.02em;
+}
+
+
+.ghost-market-icon {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 23, 68, 0.08);
+
+  border:
+    1px solid
+    rgba(255, 23, 68, 0.12);
+
+  color: #ff3158;
+}
+
+
+.ghost-market-market-status {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color:
+    rgba(255, 255, 255, 0.35);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+
+.ghost-market-market-status-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #00ff9d;
+
+  box-shadow:
+    0 0 7px
+    rgba(0, 255, 157, 0.7);
+}
+
+
+/* =========================================================
+   PRICE
+========================================================= */
+
+.ghost-market-price {
+  margin-top: 20px;
+
+  font-size:
+    clamp(20px, 3vw, 27px);
+
+  line-height: 1;
+
+  font-weight: 900;
+
+  letter-spacing: -0.04em;
+}
+
+
+.ghost-market-change {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 8px;
+
+  font-size: 10px;
+
+  font-weight: 800;
+}
+
+
+.ghost-market-change.positive {
+  color: #00ff9d;
+}
+
+
+.ghost-market-change.negative {
+  color: #ff3158;
+}
+
+
+/* =========================================================
+   MINI CHART
+========================================================= */
+
+.ghost-mini-chart {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 45px;
+
+  opacity: 0.35;
+
+  overflow: hidden;
+}
+
+
+.ghost-mini-chart svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+.ghost-mini-chart-line {
+  fill: none;
+
+  stroke:
+    #00ff9d;
+
+  stroke-width: 2;
+
+  stroke-linecap: round;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(0, 255, 157, 0.7)
+    );
+}
+
+
+.ghost-market-card:nth-child(2)
+.ghost-mini-chart-line {
+  stroke: #ff3158;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(255, 23, 68, 0.7)
+    );
+}
+
+
+.ghost-market-card:nth-child(3)
+.ghost-mini-chart-line {
+  stroke: #9b5cff;
+
+  filter:
+    drop-shadow(
+      0 0 4px
+      rgba(155, 92, 255, 0.7)
+    );
+}
+
+
+/* =========================================================
+   MAIN LIVE PANEL
+========================================================= */
+
+.ghost-live-panel {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    1.4fr 0.6fr;
+
+  gap: 0;
+
+  margin-top: 14px;
+
+  overflow: hidden;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  backdrop-filter:
+    blur(24px)
+    saturate(145%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(145%);
+
+  box-shadow:
+    0 25px 70px
+    rgba(0, 0, 0, 0.24);
+}
+
+
+/* =========================================================
+   CHART SIDE
+========================================================= */
+
+.ghost-live-chart {
+  position: relative;
+
+  min-height: 390px;
+
+  padding: 22px;
+
+  border-right:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+}
+
+
+.ghost-live-chart-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 18px;
+}
+
+
+.ghost-live-chart-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  font-size: 13px;
+
+  font-weight: 900;
+}
+
+
+.ghost-live-chart-title-icon {
+  color: #ff3158;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(255, 23, 68, 0.5)
+    );
+}
+
+
+.ghost-live-chart-time {
+  color:
+    rgba(255, 255, 255, 0.3);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CHART
+========================================================= */
+
+.ghost-public-chart {
+  position: relative;
+
+  height: 300px;
+
+  overflow: hidden;
+
+  border-radius: 15px;
+
+  background:
+    rgba(0, 0, 0, 0.12);
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.045);
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    45px 45px;
+}
+
+
+.ghost-public-chart svg {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+
+.ghost-public-chart-line {
+  fill: none;
+
+  stroke: #ff3158;
+
+  stroke-width: 3;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(255, 23, 68, 0.65)
+    );
+}
+
+
+.ghost-public-chart-area {
+  fill:
+    url("#ghostChartGradient");
+
+  opacity: 0.25;
+}
+
+
+/* =========================================================
+   CHART WATERMARK
+========================================================= */
+
+.ghost-chart-watermark {
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    rotate(-18deg);
+
+  color:
+    rgba(255, 255, 255, 0.025);
+
+  font-size:
+    clamp(25px, 5vw, 55px);
+
+  font-weight: 900;
+
+  letter-spacing:
+    0.12em;
+
+  pointer-events: none;
+
+  user-select: none;
+}
+
+
+/* =========================================================
+   RIGHT INFORMATION
+========================================================= */
+
+.ghost-market-info {
+  padding: 22px;
+}
+
+
+.ghost-market-info-title {
+  color:
+    rgba(255, 255, 255, 0.4);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+
+.ghost-market-info-symbol {
+  margin-top: 7px;
+
+  font-size: 25px;
+
+  font-weight: 900;
+
+  letter-spacing: -0.04em;
+}
+
+
+.ghost-market-info-price {
+  margin-top: 5px;
+
+  font-size: 31px;
+
+  font-weight: 900;
+
+  letter-spacing: -0.05em;
+}
+
+
+.ghost-market-info-change {
+  margin-top: 5px;
+
+  color: #00ff9d;
+
+  font-size: 11px;
+
+  font-weight: 800;
+}
+
+
+/* =========================================================
+   INFORMATION DIVIDER
+========================================================= */
+
+.ghost-market-divider {
+  height: 1px;
+
+  margin:
+    23px 0;
+
+  background:
+    rgba(255, 255, 255, 0.065);
+}
+
+
+/* =========================================================
+   MARKET DATA
+========================================================= */
+
+.ghost-market-data {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 13px;
+}
+
+
+.ghost-market-data-row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size: 10px;
+}
+
+
+.ghost-market-data-row strong {
+  color:
+    rgba(255, 255, 255, 0.78);
+
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   LIVE VIEWERS
+========================================================= */
+
+.ghost-live-viewers {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 22px;
+
+  padding: 11px 12px;
+
+  border-radius: 12px;
+
+  background:
+    rgba(0, 255, 157, 0.035);
+
+  border:
+    1px solid
+    rgba(0, 255, 157, 0.1);
+
+  color:
+    rgba(255, 255, 255, 0.6);
+
+  font-size: 10px;
+
+  font-weight: 700;
+}
+
+
+.ghost-live-viewers svg {
+  color: #00ff9d;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(0, 255, 157, 0.7)
+    );
+}
+
+
+.ghost-live-viewers-number {
+  color: #ffffff;
+
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   FOOTNOTE
+========================================================= */
+
+.ghost-live-dashboard-footer {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: 13px;
+
+  color:
+    rgba(255, 255, 255, 0.28);
+
+  font-size: 9px;
+}
+
+
+.ghost-live-dashboard-footer span {
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.ghost-live-dashboard-footer-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #00ff9d;
+
+  box-shadow:
+    0 0 7px
+    rgba(0, 255, 157, 0.7);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+  .ghost-market-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .ghost-live-panel {
+    grid-template-columns:
+      1fr;
+  }
+
+  .ghost-live-chart {
+    border-right: none;
+
+    border-bottom:
+      1px solid
+      rgba(255, 255, 255, 0.06);
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 650px) {
+
+  .ghost-live-dashboard {
+    width:
+      calc(100% - 24px);
+
+    padding:
+      55px 0;
+  }
+
+
+  .ghost-live-dashboard-header {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      15px;
+  }
+
+
+  .ghost-live-dashboard-title {
+    font-size:
+      clamp(30px, 12vw, 45px);
+  }
+
+
+  .ghost-live-dashboard-description {
+    font-size:
+      13px;
+  }
+
+
+  .ghost-market-grid {
+    grid-template-columns:
+      1fr 1fr;
+
+    gap:
+      8px;
+  }
+
+
+  .ghost-market-card {
+    min-height:
+      135px;
+
+    padding:
+      14px;
+  }
+
+
+  .ghost-market-price {
+    font-size:
+      19px;
+  }
+
+
+  .ghost-market-symbol {
+    font-size:
+      10px;
+  }
+
+
+  .ghost-market-icon {
+    width:
+      26px;
+
+    height:
+      26px;
+  }
+
+
+  .ghost-live-chart {
+    min-height:
+      330px;
+
+    padding:
+      14px;
+  }
+
+
+  .ghost-public-chart {
+    height:
+      245px;
+  }
+
+
+  .ghost-market-info {
+    padding:
+      17px;
+  }
+
+
+  .ghost-market-info-price {
+    font-size:
+      26px;
+  }
+
+
+  .ghost-live-dashboard-footer {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+  }
+}
+
+
+@media (max-width: 400px) {
+
+  .ghost-market-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .ghost-market-card {
+    min-height:
+      125px;
+  }
+}

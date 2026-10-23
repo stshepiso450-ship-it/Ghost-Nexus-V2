@@ -1,0 +1,95 @@
+.admin-logs-page {
+  width: 100%;
+}
+
+.admin-secondary-button {
+  min-height: 42px;
+
+  padding:
+    0
+    16px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  border-radius: 9px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  cursor: pointer;
+}
+
+.admin-logs-container {
+  min-height: 500px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.06);
+}
+
+.admin-logs-empty {
+  min-height: 500px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+.admin-logs-empty > div {
+  width: 62px;
+  height: 62px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ff3155;
+
+  background:
+    rgba(255, 49, 85, 0.07);
+
+  border:
+    1px solid rgba(255, 49, 85, 0.15);
+}
+
+.admin-logs-empty strong {
+  margin-top: 16px;
+
+  font-size: 9px;
+
+  letter-spacing: 0.1em;
+}
+
+.admin-logs-empty p {
+  color:
+    rgba(255, 255, 255, 0.3);
+
+  font-size: 9px;
+}

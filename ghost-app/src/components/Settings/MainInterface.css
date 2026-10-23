@@ -1,0 +1,59 @@
+.setting-box{
+
+color:white;
+
+}
+
+
+
+.setting-box h2{
+
+color:#ff004f;
+
+margin-bottom:20px;
+
+font-size:22px;
+
+}
+
+
+
+.setting-item{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:14px 0;
+
+border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+
+
+.setting-item span{
+
+color:#aaa;
+
+}
+
+
+
+.setting-item strong{
+
+color:white;
+
+}
+
+
+
+.success{
+
+color:#00ff88 !important;
+
+text-shadow:0 0 10px #00ff88;
+
+}

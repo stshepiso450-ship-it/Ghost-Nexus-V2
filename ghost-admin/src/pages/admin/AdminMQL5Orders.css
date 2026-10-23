@@ -1,0 +1,226 @@
+.mql5-order-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.mql5-order-card {
+  padding: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.mql5-order-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.order-number {
+  color: #6e6e78;
+  font-family: monospace;
+  font-size: 11px;
+}
+
+.mql5-order-header h2 {
+  margin: 7px 0 0;
+  font-size: 18px;
+}
+
+.mql5-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.mql5-status.paid {
+  background: rgba(90, 150, 255, 0.1);
+  color: #70a8ff;
+}
+
+.mql5-status.ready {
+  background: rgba(255, 174, 0, 0.1);
+  color: #ffb52e;
+}
+
+.mql5-status.released {
+  background: rgba(0, 220, 130, 0.1);
+  color: #2fe69a;
+}
+
+.mql5-status.pending {
+  background: rgba(255, 174, 0, 0.1);
+  color: #ffb52e;
+}
+
+.mql5-order-info {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+  padding: 17px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mql5-order-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mql5-order-info span {
+  color: #696974;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.mql5-order-info strong {
+  color: #ddd;
+  font-size: 12px;
+}
+
+.paid-text {
+  color: #35e69d !important;
+}
+
+.mql5-order-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.upload-ea-button,
+.release-ea-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.upload-ea-button {
+  border: 1px solid rgba(255, 48, 48, 0.3);
+  background: rgba(255, 48, 48, 0.08);
+  color: #ff5555;
+}
+
+.release-ea-button {
+  border: 0;
+  background: #ff3030;
+  color: white;
+}
+
+.release-ea-button:hover {
+  background: #e52323;
+}
+
+.release-ea-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+@media (max-width: 800px) {
+  .mql5-order-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  .mql5-order-info {
+    grid-template-columns: 1fr;
+  }
+}
+
+.mql5-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mql5-eyebrow {
+  color: #ff4058;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.mql5-page-header h1 {
+  margin: 8px 0;
+}
+
+.mql5-page-header p,
+.mql5-help-text {
+  color: #a6a6b2;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.mql5-refresh-button,
+.mql5-order-actions button,
+.upload-ea-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border: 1px solid #5a3039;
+  border-radius: 10px;
+  background: #241318;
+  color: #fff;
+  font: inherit;
+  font-weight: 750;
+  cursor: pointer;
+}
+
+.mql5-order-actions button:disabled,
+.mql5-refresh-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.mql5-order-actions .release-ea-button {
+  background: linear-gradient(110deg, #a50f28, #ed2d43);
+  border-color: transparent;
+}
+
+.mql5-order-actions .upload-ea-button {
+  background: #25171b;
+  cursor: pointer;
+}
+
+.mql5-message {
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 15px;
+  overflow-wrap: anywhere;
+}
+
+.mql5-message-error {
+  background: #2a1117;
+  border: 1px solid #873044;
+  color: #ffc7d0;
+}
+
+.mql5-message-success {
+  background: #11251c;
+  border: 1px solid #2e6345;
+  color: #b6f4cc;
+}
+
+.mql5-help-text {
+  flex-basis: 100%;
+  margin: 0;
+}

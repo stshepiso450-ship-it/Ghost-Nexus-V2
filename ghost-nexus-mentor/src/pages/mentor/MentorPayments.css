@@ -1,0 +1,51 @@
+.payments-table-card {
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.payments-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.payments-table th,
+.payments-table td {
+  padding: 16px 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: left;
+  font-size: 12px;
+}
+
+.payments-table th {
+  color: #6f6f79;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.payments-table td {
+  color: #d5d5dc;
+}
+
+.payment-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.payment-status.paid {
+  color: #31e69b;
+}
+
+.payment-status.pending {
+  color: #ffb52d;
+}
+
+.payment-status.failed {
+  color: #ff5555;
+}

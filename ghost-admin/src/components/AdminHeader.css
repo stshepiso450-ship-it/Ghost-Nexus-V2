@@ -1,0 +1,135 @@
+.admin-header {
+  width: 100%;
+
+  min-height: 70px;
+
+  padding:
+    0
+    28px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  box-sizing: border-box;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-header-system {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color:
+    rgba(255, 255, 255, 0.4);
+
+  font-size: 8px;
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+}
+
+.admin-status-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #ff3155;
+
+  box-shadow:
+    0 0 12px #ff3155;
+}
+
+.admin-header-right {
+  display: flex;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+.admin-header-button {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  border:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  cursor: pointer;
+}
+
+.admin-profile {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+}
+
+.admin-avatar {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ff3155;
+
+  background:
+    rgba(255, 49, 85, 0.1);
+
+  border:
+    1px solid rgba(255, 49, 85, 0.2);
+}
+
+.admin-profile strong {
+  display: block;
+
+  font-size: 9px;
+}
+
+.admin-profile span {
+  display: block;
+
+  margin-top: 3px;
+
+  color:
+    rgba(255, 255, 255, 0.3);
+
+  font-size: 7px;
+}
+
+@media (max-width: 600px) {
+  .admin-header {
+    padding: 0 14px;
+  }
+
+  .admin-profile > div:last-child {
+    display: none;
+  }
+}

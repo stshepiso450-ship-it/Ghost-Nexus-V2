@@ -1,0 +1,128 @@
+.mentor-orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.mentor-order-card {
+  padding: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.mentor-order-main {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.mentor-order-icon {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: rgba(255, 45, 45, 0.1);
+  color: #ff4545;
+}
+
+.mentor-order-main h2 {
+  margin: 0 0 5px;
+  font-size: 16px;
+}
+
+.mentor-order-main span {
+  color: #6f6f7a;
+  font-size: 11px;
+}
+
+.mentor-order-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin: 20px 0;
+  padding: 15px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.mentor-order-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.mentor-order-details span {
+  color: #686873;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mentor-order-details strong {
+  font-size: 13px;
+}
+
+.order-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ffb52d;
+}
+
+.order-status.ready,
+.order-status.released {
+  color: #35e69d;
+}
+
+.order-status.paid {
+  color: #6da8ff;
+}
+
+.download-ea-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  background: #ff3030;
+  color: #fff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.download-ea-button:hover {
+  background: #e82020;
+}
+
+.mentor-empty,
+.mentor-orders-loading {
+  padding: 70px 20px;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  text-align: center;
+  color: #777783;
+}
+
+.mentor-empty svg {
+  color: #ff3636;
+}
+
+.mentor-empty h2 {
+  margin: 15px 0 7px;
+  color: #ddd;
+  font-size: 17px;
+}
+
+.mentor-empty p {
+  margin: 0;
+  font-size: 13px;
+}
+
+@media (max-width: 700px) {
+  .mentor-order-details {
+    grid-template-columns: 1fr;
+  }
+}

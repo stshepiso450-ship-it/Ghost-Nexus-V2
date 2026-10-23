@@ -1,0 +1,71 @@
+.glass-card {
+
+
+background:
+
+rgba(255,255,255,.05);
+
+
+border:
+
+1px solid rgba(255,0,60,.25);
+
+
+border-radius:22px;
+
+
+padding:22px;
+
+
+backdrop-filter:blur(20px);
+
+
+box-shadow:
+
+0 0 30px rgba(255,0,60,.15);
+
+
+margin-bottom:20px;
+
+
+}
+
+
+
+.glass-card-header {
+
+
+margin-bottom:18px;
+
+
+}
+
+
+
+.glass-card-header h2 {
+
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+
+font-size:18px;
+
+
+color:white;
+
+
+}
+
+
+
+.glass-card-body {
+
+
+color:#ddd;
+
+
+}

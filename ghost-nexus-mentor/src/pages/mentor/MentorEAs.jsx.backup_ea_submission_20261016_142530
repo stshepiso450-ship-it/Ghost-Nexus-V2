@@ -1,0 +1,345 @@
+import React, { useCallback, useEffect, useState } from "react";
+
+const API_BASE = (
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000"
+).replace(/\/+$/, "");
+
+function readMentorToken() {
+  const keys = [
+    "ghost_nexus_mentor_token",
+    "mentor_token",
+    "ghost_nexus_token",
+  ];
+
+  for (const key of keys) {
+    const token = localStorage.getItem(key);
+    if (token) return token;
+  }
+
+  try {
+    const saved = JSON.parse(
+      localStorage.getItem("ghost_nexus_mentor") || "null"
+    );
+    return saved?.access_token || saved?.token || "";
+  } catch {
+    return "";
+  }
+}
+
+async function apiRequest(path, options = {}) {
+  const token = readMentorToken();
+  const headers = {
+    Accept: "application/json",
+    ...(options.body instanceof FormData
+      ? {}
+      : options.body
+        ? { "Content-Type": "application/json" }
+        : {}),
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(options.headers || {}),
+  };
+
+  const response = await fetch(`${API_BASE}${path}`, {
+    ...options,
+    headers,
+  });
+
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(
+      data.detail || data.message || `Request failed (${response.status})`
+    );
+  }
+
+  return data;
+}
+
+function getArray(payload, keys = ["eas", "items", "mentor_eas", "results", "data"]) {
+  if (Array.isArray(payload)) return payload;
+
+  for (const key of keys) {
+    if (Array.isArray(payload?.[key])) return payload[key];
+  }
+
+  if (Array.isArray(payload?.data?.eas)) return payload.data.eas;
+  return [];
+}
+
+const styles = `
+.gn-eas-page{color:#f3f3f5;width:100%;min-width:0}
+.gn-eas-head{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.gn-eas-kicker{color:#ff5866;font-size:11px;letter-spacing:2px;font-weight:800}
+.gn-eas-title{font-size:clamp(24px,4vw,34px);margin:7px 0;font-weight:850}
+.gn-eas-subtitle{color:#a6a6b2;line-height:1.6;margin:0;font-size:14px}
+.gn-eas-refresh,.gn-eas-generate{border:1px solid #5b2730;background:#271419;color:#fff;border-radius:10px;padding:11px 15px;font-weight:750;cursor:pointer}
+.gn-eas-refresh:disabled,.gn-eas-generate:disabled{opacity:.5;cursor:not-allowed}
+.gn-eas-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
+.gn-ea-card{min-width:0;background:linear-gradient(145deg,#17171d,#101014);border:1px solid #34303a;border-radius:16px;padding:19px;box-shadow:0 12px 30px #0002}
+.gn-ea-row{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.gn-ea-name{font-size:18px;font-weight:800;overflow-wrap:anywhere;margin:0 0 7px}
+.gn-ea-id{color:#a6a6b2;font-size:12px;overflow-wrap:anywhere}
+.gn-ea-status{font-size:10px;font-weight:800;letter-spacing:.7px;border:1px solid #375747;background:#13271d;color:#8ff0b0;border-radius:99px;padding:6px 9px;white-space:nowrap}
+.gn-ea-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:18px 0}
+.gn-ea-meta div{padding:11px;background:#ffffff06;border:1px solid #ffffff0d;border-radius:10px;min-width:0}
+.gn-ea-meta span{display:block;color:#9797a4;font-size:11px;margin-bottom:6px}
+.gn-ea-meta strong{font-size:13px;overflow-wrap:anywhere}
+.gn-eas-label{display:block;font-size:12px;color:#bdbdc8;font-weight:700;margin:15px 0 7px}
+.gn-eas-count{width:100%;background:#0d0d11;color:#fff;border:1px solid #42313a;border-radius:9px;padding:11px;box-sizing:border-box}
+.gn-eas-generate{width:100%;margin-top:10px;background:linear-gradient(100deg,#a50f28,#ed2d43);border:0}
+.gn-eas-msg{border:1px solid #45313a;background:#191318;color:#ffdce2;border-radius:10px;padding:12px 14px;margin:0 0 17px;overflow-wrap:anywhere}
+.gn-eas-empty{padding:32px 18px;text-align:center;border:1px dashed #44333d;background:#151318;border-radius:15px;color:#b5b2bd;line-height:1.7}
+.gn-eas-keys{border-top:1px solid #37303a;margin-top:16px;padding-top:13px}
+.gn-eas-keys h4{font-size:12px;margin:0 0 9px}
+.gn-eas-key{display:block;font-family:ui-monospace,Consolas,monospace;font-size:12px;background:#09090c;border:1px solid #37303a;border-radius:8px;padding:10px;margin-top:7px;overflow-wrap:anywhere}
+@media(max-width:480px){.gn-ea-card{padding:14px}.gn-eas-head{align-items:stretch}.gn-eas-refresh{width:100%}}
+`;
+
+export default function MentorEAs() {
+  const [eas, setEas] = useState([]);
+  const [quantities, setQuantities] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [workingId, setWorkingId] = useState("");
+  const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
+  const [generated, setGenerated] = useState(null);
+
+  const loadEAs = useCallback(async () => {
+    setLoading(true);
+    setError("");
+
+    try {
+      let payload;
+
+      try {
+        payload = await apiRequest("/api/mentor/eas");
+      } catch (firstError) {
+        const dashboard = await apiRequest("/api/mentor/dashboard");
+        payload = dashboard?.eas
+          ? dashboard
+          : { eas: dashboard?.data?.eas || [] };
+
+        if (!getArray(payload).length && firstError) {
+          throw firstError;
+        }
+      }
+
+      const list = getArray(payload);
+
+      setEas(list);
+      setQuantities((old) => {
+        const next = { ...old };
+        list.forEach((ea) => {
+          const id = ea.ea_id || ea.id;
+          if (id && next[id] == null) next[id] = 1;
+        });
+        return next;
+      });
+    } catch (err) {
+      setError(
+        `${err.message}. Check that you are signed in to the Mentor Portal and that the backend is running.`
+      );
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    loadEAs();
+  }, [loadEAs]);
+
+  async function generateLicenses(ea) {
+    const eaId = ea.ea_id;
+    if (!eaId) {
+      setError("This EA response has no EA ID. Ask Admin to assign a valid EA record.");
+      return;
+    }
+
+    const count = Number(quantities[eaId] || 1);
+    if (!Number.isInteger(count) || count < 1 || count > 500) {
+      setError("Choose a quantity between 1 and 500.");
+      return;
+    }
+
+    setWorkingId(eaId);
+    setError("");
+    setNotice("");
+    setGenerated(null);
+
+    try {
+      const result = await apiRequest(
+        `/api/mentor/eas/${encodeURIComponent(eaId)}/licenses/generate`,
+        {
+          method: "POST",
+          body: JSON.stringify({ count }),
+        }
+      );
+
+      const returned = getArray(result, [
+        "licenses",
+        "keys",
+        "generated_keys",
+        "items",
+        "data",
+      ]);
+
+      const keys = returned
+        .map((item) =>
+          typeof item === "string"
+            ? item
+            : item?.license_key || item?.key || item?.licenseKey
+        )
+        .filter(Boolean);
+
+      setGenerated({
+        eaId,
+        eaName: ea.ea_name || ea.name || eaId,
+        keys,
+      });
+
+      setNotice(
+        result.message ||
+          (keys.length
+            ? `Generated ${keys.length} licence key(s).`
+            : "Generation request succeeded. Check the Licences page for saved keys.")
+      );
+
+      await loadEAs();
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setWorkingId("");
+    }
+  }
+
+  return (
+    <section className="gn-eas-page">
+      <style>{styles}</style>
+
+      <header className="gn-eas-head">
+        <div>
+          <div className="gn-eas-kicker">GHOST NEXUS / MENTOR WORKSPACE</div>
+          <h1 className="gn-eas-title">My Expert Advisors</h1>
+          <p className="gn-eas-subtitle">
+            EAs assigned by Admin appear here automatically. Select an EA to generate client licence keys.
+          </p>
+        </div>
+        <button
+          className="gn-eas-refresh"
+          type="button"
+          onClick={loadEAs}
+          disabled={loading}
+        >
+          {loading ? "Syncing..." : "↻ Sync EAs"}
+        </button>
+      </header>
+
+      {error && <div className="gn-eas-msg" role="alert">{error}</div>}
+      {notice && <div className="gn-eas-msg" role="status">{notice}</div>}
+
+      {loading ? (
+        <div className="gn-eas-empty">Syncing assigned EAs from Ghost Nexus...</div>
+      ) : eas.length === 0 ? (
+        <div className="gn-eas-empty">
+          <strong>No EAs assigned yet</strong>
+          <br />
+          When Admin releases an EA to your Mentor ID, it will appear here.
+          <br />
+          Use <strong>Sync EAs</strong> to refresh the list.
+        </div>
+      ) : (
+        <div className="gn-eas-grid">
+          {eas.map((ea, index) => {
+            const eaId = ea.ea_id || ea.id || `ea-${index}`;
+            const eaName = ea.ea_name || ea.name || ea.product_name || "Ghost Nexus EA";
+            const status = String(ea.status || "ASSIGNED").toUpperCase();
+            const disabled =
+              workingId === eaId ||
+              (status !== "ACTIVE" && ea.admin_approved !== true) ||
+              !ea.ea_id;
+
+            return (
+              <article className="gn-ea-card" key={eaId}>
+                <div className="gn-ea-row">
+                  <div style={{ minWidth: 0 }}>
+                    <h2 className="gn-ea-name">{eaName}</h2>
+                    <div className="gn-ea-id">{ea.ea_id || "EA ID not supplied"}</div>
+                  </div>
+                  <span className="gn-ea-status">{status}</span>
+                </div>
+
+                <div className="gn-ea-meta">
+                  <div>
+                    <span>Symbol</span>
+                    <strong>{ea.symbol || "Not specified"}</strong>
+                  </div>
+                  <div>
+                    <span>Platform</span>
+                    <strong>{ea.platform || "MT5"}</strong>
+                  </div>
+                  <div>
+                    <span>Version</span>
+                    <strong>{ea.script_version || ea.version || "1.0.0"}</strong>
+                  </div>
+                  <div>
+                    <span>Licence limit</span>
+                    <strong>{ea.max_licenses ?? 500}</strong>
+                  </div>
+                </div>
+
+                <label className="gn-eas-label" htmlFor={`gn-qty-${eaId}`}>
+                  Number of licence keys to generate
+                </label>
+                <input
+                  className="gn-eas-count"
+                  id={`gn-qty-${eaId}`}
+                  type="number"
+                  min="1"
+                  max="500"
+                  step="1"
+                  value={quantities[ea.ea_id] ?? 1}
+                  onChange={(event) =>
+                    setQuantities((old) => ({
+                      ...old,
+                      [ea.ea_id]: event.target.value,
+                    }))
+                  }
+                />
+
+                <button
+                  type="button"
+                  className="gn-eas-generate"
+                  disabled={disabled}
+                  onClick={() => generateLicenses(ea)}
+                >
+                  {workingId === eaId
+                    ? "Generating..."
+                    : !ea.ea_id
+                      ? "EA ID missing"
+                      : disabled
+                        ? "Waiting for Admin approval"
+                        : "Generate Licence Keys"}
+                </button>
+
+                {generated?.eaId === ea.ea_id && (
+                  <div className="gn-eas-keys">
+                    <h4>Newly returned keys — {generated.eaName}</h4>
+                    {generated.keys.length ? (
+                      generated.keys.map((key) => (
+                        <code className="gn-eas-key" key={key}>{key}</code>
+                      ))
+                    ) : (
+                      <span className="gn-ea-id">
+                        No keys were returned in this response. Check the Licences page to confirm which keys were saved.
+                      </span>
+                    )}
+                  </div>
+                )}
+              </article>
+            );
+          })}
+        </div>
+      )}
+    </section>
+  );
+}

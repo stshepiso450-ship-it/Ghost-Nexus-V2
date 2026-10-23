@@ -1,0 +1,61 @@
+.buy-signal {
+
+
+font-size:45px;
+
+font-weight:900;
+
+color:#00ff88;
+
+text-shadow:
+
+0 0 20px #00ff88;
+
+
+}
+
+
+
+.sell-signal {
+
+
+font-size:45px;
+
+font-weight:900;
+
+color:red;
+
+text-shadow:
+
+0 0 20px red;
+
+
+}
+
+
+
+.wait-signal {
+
+
+font-size:45px;
+
+font-weight:900;
+
+color:#ffaa00;
+
+
+}
+
+
+
+.waiting-ai {
+
+
+text-align:center;
+
+padding:30px;
+
+color:#888;
+
+
+}

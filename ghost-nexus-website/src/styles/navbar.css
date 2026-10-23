@@ -1,0 +1,766 @@
+/* =========================================================
+   GHOST NEXUS — NAVBAR
+   Smooth Glass + Neon
+========================================================= */
+
+.ghost-navbar {
+  position: fixed;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: min(1180px, calc(100% - 32px));
+  height: 68px;
+
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.075),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+
+  border-radius: 20px;
+
+  backdrop-filter:
+    blur(24px)
+    saturate(150%);
+
+  -webkit-backdrop-filter:
+    blur(24px)
+    saturate(150%);
+
+  box-shadow:
+    0 18px 55px rgba(0, 0, 0, 0.3),
+    0 0 35px rgba(255, 23, 68, 0.06);
+
+  transition:
+    all 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.ghost-navbar:hover {
+  border-color:
+    rgba(255, 23, 68, 0.22);
+
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.35),
+    0 0 40px rgba(255, 23, 68, 0.1);
+}
+
+
+/* =========================================================
+   LOGO
+========================================================= */
+
+.ghost-navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: max-content;
+
+  font-size: 17px;
+  font-weight: 900;
+
+  letter-spacing: -0.02em;
+}
+
+.ghost-navbar-logo img {
+  width: 40px;
+  height: 40px;
+
+  object-fit: contain;
+
+  border-radius: 12px;
+
+  filter:
+    drop-shadow(
+      0 0 10px rgba(255, 23, 68, 0.5)
+    );
+
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.ghost-navbar-logo:hover img {
+  transform: rotate(-4deg) scale(1.05);
+
+  filter:
+    drop-shadow(
+      0 0 15px rgba(255, 23, 68, 0.8)
+    );
+}
+
+.ghost-navbar-logo-text {
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #ff3158,
+      #9b5cff
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+.ghost-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-left: auto;
+  margin-right: 14px;
+}
+
+.ghost-navbar-link {
+  position: relative;
+
+  padding: 9px 12px;
+
+  border-radius: 11px;
+
+  color:
+    rgba(255, 255, 255, 0.64);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.ghost-navbar-link::after {
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: 4px;
+
+  width: 0;
+  height: 2px;
+
+  transform: translateX(-50%);
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff1744,
+      #9b5cff
+    );
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 0 8px rgba(255, 23, 68, 0.6);
+
+  transition:
+    width 0.3s ease;
+}
+
+.ghost-navbar-link:hover {
+  color: #ffffff;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  transform: translateY(-1px);
+}
+
+.ghost-navbar-link:hover::after {
+  width: 45%;
+}
+
+
+/* =========================================================
+   ACTIVE LINK
+========================================================= */
+
+.ghost-navbar-link.active {
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 23, 68, 0.13),
+      rgba(155, 92, 255, 0.06)
+    );
+
+  border:
+    1px solid rgba(255, 23, 68, 0.12);
+}
+
+.ghost-navbar-link.active::after {
+  width: 50%;
+}
+
+
+/* =========================================================
+   LIVE VIEWERS
+========================================================= */
+
+.ghost-navbar-viewers {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  border-radius: 999px;
+
+  background:
+    rgba(0, 255, 157, 0.045);
+
+  border:
+    1px solid rgba(0, 255, 157, 0.12);
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+.ghost-navbar-viewers .eye {
+  color: #00ff9d;
+
+  filter:
+    drop-shadow(
+      0 0 7px rgba(0, 255, 157, 0.7)
+    );
+}
+
+.ghost-navbar-viewers .viewer-number {
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   ONLINE INDICATOR
+========================================================= */
+
+.ghost-navbar-online {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  color:
+    #00ff9d;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.08em;
+}
+
+.ghost-navbar-online-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background:
+    #00ff9d;
+
+  box-shadow:
+    0 0 7px #00ff9d,
+    0 0 16px rgba(0, 255, 157, 0.55);
+
+  animation:
+    ghostNavbarPulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ghostNavbarPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: scale(1.35);
+    opacity: 1;
+  }
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
+
+.ghost-navbar-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 100px;
+
+  padding: 10px 15px;
+
+  border-radius: 12px;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  border:
+    1px solid rgba(255, 23, 68, 0.4);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 23, 68, 0.2),
+      rgba(155, 92, 255, 0.08)
+    );
+
+  box-shadow:
+    0 0 20px rgba(255, 23, 68, 0.08);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.ghost-navbar-cta:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(255, 23, 68, 0.7);
+
+  box-shadow:
+    0 0 25px rgba(255, 23, 68, 0.22),
+    0 0 50px rgba(155, 92, 255, 0.08);
+}
+
+
+/* =========================================================
+   MOBILE BUTTON
+========================================================= */
+
+.ghost-navbar-menu {
+  width: 42px;
+  height: 42px;
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    all 0.25s ease;
+}
+
+.ghost-navbar-menu:hover {
+  border-color:
+    rgba(255, 23, 68, 0.35);
+
+  box-shadow:
+    0 0 20px rgba(255, 23, 68, 0.12);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 950px) {
+
+  .ghost-navbar-links {
+    display: none;
+  }
+
+  .ghost-navbar-menu {
+    display: flex;
+  }
+
+  .ghost-navbar-viewers {
+    margin-left: auto;
+    margin-right: 10px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .ghost-navbar {
+    top: 10px;
+
+    width:
+      calc(100% - 20px);
+
+    height: 62px;
+
+    padding:
+      0 12px;
+
+    border-radius:
+      17px;
+  }
+
+  .ghost-navbar-logo-text {
+    display: none;
+  }
+
+  .ghost-navbar-logo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .ghost-navbar-online {
+    display: none;
+  }
+
+  .ghost-navbar-viewers {
+    font-size: 10px;
+  }
+
+  .ghost-navbar-cta {
+    min-width: auto;
+    padding: 9px 12px;
+  }
+}/* =========================================================
+   MOBILE MENU
+========================================================= */
+
+.ghost-mobile-menu {
+  position: fixed;
+
+  top: 82px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width:
+    min(1180px, calc(100% - 20px));
+
+  z-index: 999;
+
+  padding:
+    14px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12, 14, 27, 0.82),
+      rgba(7, 8, 17, 0.68)
+    );
+
+  border:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  border-radius:
+    20px;
+
+  backdrop-filter:
+    blur(28px)
+    saturate(150%);
+
+  -webkit-backdrop-filter:
+    blur(28px)
+    saturate(150%);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.4),
+    0 0 35px rgba(255, 23, 68, 0.08);
+}
+
+.ghost-mobile-menu-inner {
+  display:
+    flex;
+
+  flex-direction:
+    column;
+
+  gap:
+    5px;
+}
+
+.ghost-mobile-status {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    7px;
+
+  padding:
+    10px 12px;
+
+  margin-bottom:
+    7px;
+
+  color:
+    rgba(255, 255, 255, 0.5);
+
+  font-size:
+    10px;
+
+  font-weight:
+    800;
+
+  text-transform:
+    uppercase;
+
+  letter-spacing:
+    0.08em;
+}
+
+.ghost-mobile-status svg {
+  color:
+    #00ff9d;
+
+  filter:
+    drop-shadow(
+      0 0 6px
+      rgba(0, 255, 157, 0.6)
+    );
+}
+
+.ghost-mobile-live-dot {
+  width:
+    6px;
+
+  height:
+    6px;
+
+  border-radius:
+    50%;
+
+  background:
+    #00ff9d;
+
+  box-shadow:
+    0 0 10px
+    rgba(0, 255, 157, 0.7);
+}
+
+.ghost-mobile-link {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  min-height:
+    45px;
+
+  padding:
+    0 13px;
+
+  border-radius:
+    12px;
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  font-size:
+    13px;
+
+  font-weight:
+    700;
+
+  transition:
+    all 0.25s ease;
+}
+
+.ghost-mobile-link:hover,
+.ghost-mobile-link.active {
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 23, 68, 0.13),
+      rgba(155, 92, 255, 0.06)
+    );
+
+  border:
+    1px solid rgba(255, 23, 68, 0.12);
+}
+
+.ghost-mobile-viewers {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  gap:
+    8px;
+
+  margin-top:
+    8px;
+
+  padding:
+    12px;
+
+  border-radius:
+    12px;
+
+  background:
+    rgba(0, 255, 157, 0.035);
+
+  border:
+    1px solid
+    rgba(0, 255, 157, 0.1);
+
+  color:
+    rgba(255, 255, 255, 0.65);
+
+  font-size:
+    11px;
+
+  font-weight:
+    700;
+}
+
+.ghost-mobile-viewers svg {
+  color:
+    #00ff9d;
+
+  filter:
+    drop-shadow(
+      0 0 7px
+      rgba(0, 255, 157, 0.6)
+    );
+}
+
+.ghost-mobile-login {
+  display:
+    flex;
+
+  align-items:
+    center;
+
+  justify-content:
+    center;
+
+  gap:
+    7px;
+
+  min-height:
+    45px;
+
+  margin-top:
+    5px;
+
+  border-radius:
+    12px;
+
+  color:
+    #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 23, 68, 0.2),
+      rgba(155, 92, 255, 0.09)
+    );
+
+  border:
+    1px solid
+    rgba(255, 23, 68, 0.3);
+
+  font-size:
+    12px;
+
+  font-weight:
+    800;
+}
+
+@media (min-width: 951px) {
+  .ghost-mobile-menu {
+    display: none;
+  }
+}
+/* =========================================================
+   REAL STATUS / MENTOR CTA
+========================================================= */
+.ghost-navbar-live-ring {
+  width: 7px;
+  height: 7px;
+  flex: 0 0 7px;
+  border-radius: 50%;
+  background: #00ff9d;
+  box-shadow: 0 0 8px #00ff9d, 0 0 15px rgba(0,255,157,.55);
+  animation: ghostNavbarPulse 1.8s ease-in-out infinite;
+}
+
+.ghost-navbar-mentor {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 116px;
+  padding: 10px 13px;
+  border-radius: 11px;
+  border: 1px solid rgba(255,23,68,.32);
+  background: rgba(255,23,68,.075);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: .25s ease;
+}
+
+.ghost-navbar-mentor:hover {
+  border-color: rgba(255,23,68,.65);
+  background: rgba(255,23,68,.14);
+  box-shadow: 0 0 25px rgba(255,23,68,.13);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 1150px) {
+  .ghost-navbar-mentor { display: none; }
+}
+
+.ghost-navbar-viewers .ghost-navbar-live-ring {
+  display: inline-block;
+}
+
+@media (max-width: 700px) {
+  .ghost-navbar-viewers {
+    padding: 7px 9px;
+  }
+}

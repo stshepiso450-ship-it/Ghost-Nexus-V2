@@ -1,0 +1,1555 @@
+/* =========================================================
+   GHOST NEXUS — MENTOR LOGIN
+   File:
+   ghost-nexus-website/src/styles/MentorLogin.css
+   ========================================================= */
+
+.mentor-login-page {
+  --mentor-red: #ff1744;
+  --mentor-red-bright: #ff355f;
+  --mentor-red-dark: #b0002d;
+  --mentor-orange: #ff5a1f;
+  --mentor-text: #f7f7f9;
+  --mentor-muted: #a7a7b2;
+  --mentor-border: rgba(255, 255, 255, 0.09);
+  --mentor-border-red: rgba(255, 23, 68, 0.32);
+  --mentor-glass: rgba(17, 17, 22, 0.68);
+
+  position: relative;
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  overflow: hidden;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 70px 24px 80px;
+
+  background:
+    radial-gradient(
+      circle at 50% 15%,
+      rgba(255, 23, 68, 0.13),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 10% 80%,
+      rgba(255, 90, 31, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 90% 70%,
+      rgba(255, 23, 68, 0.08),
+      transparent 30%
+    ),
+    #050507;
+
+  color: var(--mentor-text);
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.mentor-login-background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.mentor-login-grid {
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 55px 55px;
+
+  mask-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.75),
+    transparent 85%
+  );
+
+  opacity: 0.45;
+}
+
+.mentor-login-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.mentor-login-orb-one {
+  width: 330px;
+  height: 330px;
+
+  top: -120px;
+  left: -90px;
+
+  border: 1px solid rgba(255, 23, 68, 0.16);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 23, 68, 0.12),
+      transparent 68%
+    );
+
+  box-shadow:
+    0 0 100px rgba(255, 23, 68, 0.08);
+
+  animation: mentorOrbFloatOne 8s ease-in-out infinite;
+}
+
+.mentor-login-orb-two {
+  width: 440px;
+  height: 440px;
+
+  right: -180px;
+  bottom: -210px;
+
+  border: 1px solid rgba(255, 90, 31, 0.12);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 90, 31, 0.08),
+      transparent 70%
+    );
+
+  box-shadow:
+    0 0 120px rgba(255, 23, 68, 0.06);
+
+  animation: mentorOrbFloatTwo 10s ease-in-out infinite;
+}
+
+.mentor-login-orb-three {
+  width: 190px;
+  height: 190px;
+
+  top: 42%;
+  left: 8%;
+
+  border: 1px solid rgba(255, 23, 68, 0.08);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 23, 68, 0.06),
+      transparent 70%
+    );
+
+  animation: mentorOrbFloatThree 7s ease-in-out infinite;
+}
+
+.mentor-login-glow {
+  position: absolute;
+  z-index: 0;
+
+  width: 700px;
+  height: 700px;
+
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 23, 68, 0.08),
+      rgba(255, 23, 68, 0.02) 38%,
+      transparent 70%
+    );
+
+  filter: blur(25px);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   MAIN CONTAINER
+   ========================================================= */
+
+.mentor-login-container {
+  position: relative;
+  z-index: 5;
+
+  width: min(100%, 620px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================================
+   TOP BADGE
+   ========================================================= */
+
+.mentor-login-top-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  margin-bottom: 18px;
+
+  padding: 9px 15px;
+
+  border: 1px solid rgba(255, 23, 68, 0.24);
+  border-radius: 999px;
+
+  background: rgba(255, 23, 68, 0.055);
+
+  box-shadow:
+    0 0 25px rgba(255, 23, 68, 0.05),
+    inset 0 0 20px rgba(255, 23, 68, 0.025);
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.mentor-login-live-dot {
+  width: 7px;
+  height: 7px;
+
+  flex: 0 0 auto;
+
+  border-radius: 50%;
+
+  background: var(--mentor-red);
+
+  box-shadow:
+    0 0 7px var(--mentor-red),
+    0 0 14px rgba(255, 23, 68, 0.55);
+
+  animation: mentorLivePulse 1.8s ease-in-out infinite;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.mentor-login-card {
+  position: relative;
+
+  width: 100%;
+
+  padding: 42px;
+
+  border: 1px solid var(--mentor-border);
+
+  border-radius: 28px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(30, 30, 37, 0.76),
+      rgba(8, 8, 11, 0.82)
+    );
+
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.58),
+    0 0 80px rgba(255, 23, 68, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.045);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  overflow: hidden;
+}
+
+.mentor-login-card::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(255, 23, 68, 0.075),
+      transparent 38%
+    );
+
+  pointer-events: none;
+}
+
+.mentor-login-card::after {
+  content: "";
+
+  position: absolute;
+
+  width: 280px;
+  height: 280px;
+
+  right: -170px;
+  top: -170px;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 23, 68, 0.08);
+
+  pointer-events: none;
+}
+
+.mentor-login-card-line {
+  position: absolute;
+
+  top: 0;
+  left: 9%;
+
+  width: 82%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 23, 68, 0.8),
+      transparent
+    );
+
+  box-shadow:
+    0 0 15px rgba(255, 23, 68, 0.4);
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.mentor-login-logo-wrap {
+  position: relative;
+
+  width: 92px;
+  height: 92px;
+
+  margin: 0 auto 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mentor-login-logo {
+  position: relative;
+  z-index: 3;
+
+  width: 66px;
+  height: 66px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 23, 68, 0.45);
+  border-radius: 50%;
+
+  color: var(--mentor-red);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255, 23, 68, 0.13),
+      rgba(12, 12, 16, 0.85) 70%
+    );
+
+  box-shadow:
+    0 0 25px rgba(255, 23, 68, 0.18),
+    inset 0 0 25px rgba(255, 23, 68, 0.07);
+}
+
+.mentor-login-logo-ring {
+  position: absolute;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 23, 68, 0.16);
+}
+
+.mentor-login-logo-ring-one {
+  inset: 3px;
+
+  animation: mentorLogoSpin 12s linear infinite;
+}
+
+.mentor-login-logo-ring-two {
+  inset: -7px;
+
+  border-style: dashed;
+  border-color: rgba(255, 23, 68, 0.12);
+
+  animation: mentorLogoSpinReverse 18s linear infinite;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.mentor-login-header {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+
+  margin-bottom: 27px;
+}
+
+.mentor-login-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  margin-bottom: 12px;
+
+  color: var(--mentor-red);
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.mentor-login-header h1 {
+  margin: 0;
+
+  font-size: clamp(31px, 5vw, 44px);
+  line-height: 1.05;
+
+  font-weight: 800;
+  letter-spacing: -0.04em;
+
+  color: #ffffff;
+}
+
+.mentor-login-header h1 span {
+  color: var(--mentor-red);
+
+  text-shadow:
+    0 0 25px rgba(255, 23, 68, 0.3);
+}
+
+.mentor-login-header p {
+  max-width: 450px;
+
+  margin: 15px auto 0;
+
+  color: var(--mentor-muted);
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.mentor-login-header p strong {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+/* =========================================================
+   SECURITY MESSAGE
+   ========================================================= */
+
+.mentor-login-security {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  margin-bottom: 23px;
+
+  padding: 14px 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.mentor-login-security-icon {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 23, 68, 0.2);
+  border-radius: 11px;
+
+  color: var(--mentor-red);
+
+  background: rgba(255, 23, 68, 0.06);
+}
+
+.mentor-login-security > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mentor-login-security strong {
+  color: #eeeeef;
+
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.mentor-login-security span {
+  color: #85858f;
+
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.mentor-login-error {
+  position: relative;
+  z-index: 3;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  margin-bottom: 20px;
+  padding: 14px;
+
+  border: 1px solid rgba(255, 23, 68, 0.35);
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 23, 68, 0.1),
+      rgba(255, 23, 68, 0.035)
+    );
+
+  box-shadow:
+    0 0 25px rgba(255, 23, 68, 0.05);
+}
+
+.mentor-login-error-icon {
+  width: 28px;
+  height: 28px;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+  background: var(--mentor-red);
+
+  font-size: 14px;
+  font-weight: 900;
+
+  box-shadow:
+    0 0 14px rgba(255, 23, 68, 0.25);
+}
+
+.mentor-login-error > div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.mentor-login-error strong {
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+.mentor-login-error span {
+  color: #ffadb9;
+
+  font-size: 11px;
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.mentor-login-form {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 21px;
+}
+
+.mentor-login-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.mentor-login-field label {
+  color: #dddddf;
+
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mentor-login-input-wrap,
+.mentor-login-password {
+  position: relative;
+  width: 100%;
+}
+
+.mentor-login-input {
+  width: 100%;
+  height: 54px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 13px;
+
+  outline: none;
+
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.035);
+
+  font-family: inherit;
+  font-size: 14px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.mentor-login-input-with-icon {
+  padding: 0 48px;
+}
+
+.mentor-login-input::placeholder {
+  color: #5f5f69;
+}
+
+.mentor-login-input:hover {
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+.mentor-login-input:focus {
+  border-color: rgba(255, 23, 68, 0.62);
+
+  background: rgba(255, 23, 68, 0.025);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 23, 68, 0.07),
+    0 0 25px rgba(255, 23, 68, 0.055);
+}
+
+.mentor-login-input:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.mentor-login-input-icon {
+  position: absolute;
+
+  left: 16px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 2;
+
+  color: #6d6d77;
+
+  pointer-events: none;
+
+  transition: color 0.2s ease;
+}
+
+.mentor-login-input-wrap:focus-within
+  .mentor-login-input-icon,
+.mentor-login-password:focus-within
+  .mentor-login-input-icon {
+  color: var(--mentor-red);
+}
+
+.mentor-login-field small {
+  color: #666671;
+
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
+.mentor-login-password .mentor-login-input {
+  padding-right: 52px;
+}
+
+.mentor-login-password-toggle {
+  position: absolute;
+
+  right: 8px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 0;
+  border-radius: 10px;
+
+  color: #777782;
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.mentor-login-password-toggle:hover {
+  color: var(--mentor-red);
+  background: rgba(255, 23, 68, 0.07);
+}
+
+.mentor-login-password-toggle:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   OPTIONS
+   ========================================================= */
+
+.mentor-login-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-top: -4px;
+}
+
+.mentor-login-remember {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #85858f;
+
+  font-size: 11px;
+
+  cursor: pointer;
+
+  user-select: none;
+}
+
+.mentor-login-remember input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.mentor-login-checkbox {
+  width: 16px;
+  height: 16px;
+
+  display: inline-block;
+
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 5px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.mentor-login-remember input:checked
+  + .mentor-login-checkbox {
+  border-color: var(--mentor-red);
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--mentor-red),
+      #c80035
+    );
+
+  box-shadow:
+    0 0 10px rgba(255, 23, 68, 0.25);
+}
+
+.mentor-login-remember input:checked
+  + .mentor-login-checkbox::after {
+  content: "";
+
+  display: block;
+
+  width: 4px;
+  height: 8px;
+
+  margin: 2px 0 0 5px;
+
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+
+  transform: rotate(45deg);
+}
+
+.mentor-login-apply-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #8d8d98;
+
+  font-size: 11px;
+  font-weight: 650;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.mentor-login-apply-link:hover {
+  gap: 8px;
+
+  color: var(--mentor-red);
+}
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.mentor-login-button {
+  position: relative;
+
+  width: 100%;
+  min-height: 56px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 3px;
+
+  padding: 0 20px;
+
+  border: 1px solid rgba(255, 83, 111, 0.45);
+  border-radius: 14px;
+
+  outline: none;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff1744,
+      #d50036
+    );
+
+  box-shadow:
+    0 12px 30px rgba(255, 23, 68, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+
+  cursor: pointer;
+
+  overflow: hidden;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    filter 0.2s ease;
+}
+
+.mentor-login-button::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 80%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.18),
+      transparent
+    );
+
+  transform: skewX(-20deg);
+
+  transition: left 0.6s ease;
+}
+
+.mentor-login-button:hover::before {
+  left: 140%;
+}
+
+.mentor-login-button:hover {
+  transform: translateY(-2px);
+
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 16px 40px rgba(255, 23, 68, 0.28),
+    0 0 25px rgba(255, 23, 68, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.mentor-login-button:active {
+  transform: translateY(0);
+}
+
+.mentor-login-button:disabled {
+  opacity: 0.65;
+
+  cursor: not-allowed;
+
+  transform: none;
+
+  box-shadow:
+    0 8px 20px rgba(255, 23, 68, 0.12);
+}
+
+.mentor-login-spinner {
+  width: 16px;
+  height: 16px;
+
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-top-color: #ffffff;
+
+  border-radius: 50%;
+
+  animation: mentorSpinner 0.75s linear infinite;
+}
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.mentor-login-divider {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 28px 0 21px;
+}
+
+.mentor-login-divider > span:first-child,
+.mentor-login-divider > span:last-child {
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.09)
+    );
+}
+
+.mentor-login-divider > span:last-child {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.09),
+      transparent
+    );
+}
+
+.mentor-login-divider > span:nth-child(2) {
+  color: #555560;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.mentor-login-footer {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 7px;
+
+  text-align: center;
+
+  color: #666671;
+
+  font-size: 11px;
+}
+
+.mentor-login-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #c7c7ce;
+
+  font-weight: 700;
+
+  text-decoration: none;
+
+  transition:
+    color 0.2s ease,
+    gap 0.2s ease;
+}
+
+.mentor-login-footer a:hover {
+  gap: 8px;
+  color: var(--mentor-red);
+}
+
+/* =========================================================
+   CORNER DETAILS
+   ========================================================= */
+
+.mentor-login-corner {
+  position: absolute;
+
+  width: 18px;
+  height: 18px;
+
+  pointer-events: none;
+
+  opacity: 0.7;
+}
+
+.mentor-login-corner-tl {
+  top: 18px;
+  left: 18px;
+
+  border-top: 1px solid rgba(255, 23, 68, 0.42);
+  border-left: 1px solid rgba(255, 23, 68, 0.42);
+}
+
+.mentor-login-corner-tr {
+  top: 18px;
+  right: 18px;
+
+  border-top: 1px solid rgba(255, 23, 68, 0.42);
+  border-right: 1px solid rgba(255, 23, 68, 0.42);
+}
+
+.mentor-login-corner-bl {
+  bottom: 18px;
+  left: 18px;
+
+  border-bottom: 1px solid rgba(255, 23, 68, 0.42);
+  border-left: 1px solid rgba(255, 23, 68, 0.42);
+}
+
+.mentor-login-corner-br {
+  right: 18px;
+  bottom: 18px;
+
+  border-right: 1px solid rgba(255, 23, 68, 0.42);
+  border-bottom: 1px solid rgba(255, 23, 68, 0.42);
+}
+
+/* =========================================================
+   BOTTOM STATUS
+   ========================================================= */
+
+.mentor-login-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+
+  margin-top: 16px;
+
+  color: #4e4e58;
+
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-align: center;
+}
+
+.mentor-login-bottom-dot {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background: #3ed598;
+
+  box-shadow:
+    0 0 8px rgba(62, 213, 152, 0.5);
+}
+
+.mentor-login-bottom-separator {
+  color: #38383f;
+}
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes mentorLivePulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.55;
+    transform: scale(0.72);
+  }
+}
+
+@keyframes mentorOrbFloatOne {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(25px, 20px, 0);
+  }
+}
+
+@keyframes mentorOrbFloatTwo {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(-25px, -25px, 0);
+  }
+}
+
+@keyframes mentorOrbFloatThree {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(15px, -20px, 0);
+  }
+}
+
+@keyframes mentorLogoSpin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mentorLogoSpinReverse {
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes mentorSpinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .mentor-login-page {
+    min-height: calc(100vh - 70px);
+
+    padding: 45px 18px 60px;
+  }
+
+  .mentor-login-card {
+    padding: 34px 26px;
+
+    border-radius: 23px;
+  }
+
+  .mentor-login-logo-wrap {
+    margin-bottom: 21px;
+  }
+
+  .mentor-login-header h1 {
+    font-size: 36px;
+  }
+
+  .mentor-login-security {
+    padding: 13px;
+  }
+
+  .mentor-login-orb-one {
+    width: 240px;
+    height: 240px;
+  }
+
+  .mentor-login-orb-two {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 520px) {
+  .mentor-login-page {
+    min-height: 100vh;
+
+    padding: 32px 12px 45px;
+
+    align-items: flex-start;
+  }
+
+  .mentor-login-container {
+    width: 100%;
+  }
+
+  .mentor-login-top-badge {
+    max-width: 92%;
+
+    margin-bottom: 13px;
+
+    padding: 8px 12px;
+
+    font-size: 8px;
+    letter-spacing: 0.13em;
+
+    text-align: center;
+  }
+
+  .mentor-login-card {
+    padding: 29px 17px 26px;
+
+    border-radius: 20px;
+  }
+
+  .mentor-login-logo-wrap {
+    width: 82px;
+    height: 82px;
+
+    margin-bottom: 19px;
+  }
+
+  .mentor-login-logo {
+    width: 58px;
+    height: 58px;
+  }
+
+  .mentor-login-logo svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mentor-login-header {
+    margin-bottom: 22px;
+  }
+
+  .mentor-login-eyebrow {
+    font-size: 8px;
+    letter-spacing: 0.15em;
+  }
+
+  .mentor-login-header h1 {
+    font-size: 32px;
+  }
+
+  .mentor-login-header p {
+    margin-top: 12px;
+
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .mentor-login-security {
+    align-items: flex-start;
+
+    margin-bottom: 19px;
+
+    padding: 12px;
+  }
+
+  .mentor-login-security-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mentor-login-security strong {
+    font-size: 11px;
+  }
+
+  .mentor-login-security span {
+    font-size: 9px;
+  }
+
+  .mentor-login-form {
+    gap: 18px;
+  }
+
+  .mentor-login-field {
+    gap: 7px;
+  }
+
+  .mentor-login-field label {
+    font-size: 10px;
+  }
+
+  .mentor-login-input {
+    height: 51px;
+
+    font-size: 13px;
+  }
+
+  .mentor-login-input-with-icon {
+    padding-left: 45px;
+    padding-right: 46px;
+  }
+
+  .mentor-login-field small {
+    font-size: 9px;
+  }
+
+  .mentor-login-options {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 12px;
+  }
+
+  .mentor-login-apply-link {
+    font-size: 10px;
+  }
+
+  .mentor-login-button {
+    min-height: 53px;
+
+    font-size: 10px;
+
+    letter-spacing: 0.08em;
+  }
+
+  .mentor-login-divider {
+    margin: 23px 0 18px;
+  }
+
+  .mentor-login-footer {
+    font-size: 10px;
+  }
+
+  .mentor-login-bottom {
+    margin-top: 12px;
+
+    font-size: 7px;
+
+    gap: 6px;
+  }
+
+  .mentor-login-corner {
+    width: 14px;
+    height: 14px;
+  }
+
+  .mentor-login-corner-tl,
+  .mentor-login-corner-tr {
+    top: 13px;
+  }
+
+  .mentor-login-corner-bl,
+  .mentor-login-corner-br {
+    bottom: 13px;
+  }
+
+  .mentor-login-corner-tl,
+  .mentor-login-corner-bl {
+    left: 13px;
+  }
+
+  .mentor-login-corner-tr,
+  .mentor-login-corner-br {
+    right: 13px;
+  }
+
+  .mentor-login-orb-three {
+    display: none;
+  }
+
+  .mentor-login-glow {
+    width: 400px;
+    height: 400px;
+  }
+}
+
+/* =========================================================
+   SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .mentor-login-page {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .mentor-login-card {
+    padding: 25px 14px 22px;
+  }
+
+  .mentor-login-header h1 {
+    font-size: 29px;
+  }
+
+  .mentor-login-security {
+    gap: 9px;
+  }
+
+  .mentor-login-button {
+    font-size: 9px;
+  }
+}
+
+/* =========================================================
+   REDUCE MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .mentor-login-live-dot,
+  .mentor-login-orb-one,
+  .mentor-login-orb-two,
+  .mentor-login-orb-three,
+  .mentor-login-logo-ring-one,
+  .mentor-login-logo-ring-two,
+  .mentor-login-spinner {
+    animation: none;
+  }
+
+  .mentor-login-button,
+  .mentor-login-input,
+  .mentor-login-footer a,
+  .mentor-login-apply-link {
+    transition: none;
+  }
+}
+
+/* Successful login message */
+.mentor-login-success {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-bottom: 20px;
+  padding: 13px 14px;
+  border: 1px solid rgba(62, 213, 152, 0.3);
+  border-radius: 14px;
+  color: #a7f3d0;
+  background: rgba(62, 213, 152, 0.07);
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.mentor-login-success svg {
+  flex: 0 0 auto;
+  color: #3ed598;
+}

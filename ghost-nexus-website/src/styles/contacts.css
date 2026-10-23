@@ -1,0 +1,262 @@
+/* =========================================================
+   GHOST NEXUS — CONTACTS
+========================================================= */
+
+.ghost-contact-page {
+  min-height: 100vh;
+  padding: 120px 6% 90px;
+  position: relative;
+  overflow: hidden;
+}
+
+.ghost-contact-page::before,
+.ghost-contact-page::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.ghost-contact-page::before {
+  width: 400px;
+  height: 400px;
+  left: -180px;
+  top: 120px;
+  background: rgba(255, 0, 70, 0.12);
+}
+
+.ghost-contact-page::after {
+  width: 350px;
+  height: 350px;
+  right: -150px;
+  bottom: 100px;
+  background: rgba(0, 180, 255, 0.08);
+}
+
+.ghost-contact-container {
+  max-width: 1150px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.ghost-contact-hero {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 65px;
+}
+
+.ghost-contact-kicker {
+  color: #ff315f;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(255, 49, 95, 0.7);
+}
+
+.ghost-contact-hero h1 {
+  color: #fff;
+  font-size: clamp(42px, 6vw, 70px);
+  line-height: 1;
+  margin: 18px 0;
+  font-weight: 900;
+  letter-spacing: -3px;
+}
+
+.ghost-contact-hero h1 span {
+  color: #ff315f;
+  text-shadow: 0 0 30px rgba(255, 49, 95, 0.4);
+}
+
+.ghost-contact-hero p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+/* LAYOUT */
+
+.ghost-contact-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 28px;
+}
+
+/* INFO */
+
+.ghost-contact-info,
+.ghost-contact-form {
+  padding: 32px;
+
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 25px;
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.3),
+    inset 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.ghost-contact-info h2,
+.ghost-contact-form h2 {
+  color: #fff;
+  margin: 0 0 12px;
+  font-size: 25px;
+}
+
+.ghost-contact-info > p {
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+.ghost-contact-item {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+  padding: 17px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ghost-contact-item:last-child {
+  border-bottom: 0;
+}
+
+.ghost-contact-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 13px;
+  color: #ff315f;
+
+  background: rgba(255, 49, 95, 0.08);
+  border: 1px solid rgba(255, 49, 95, 0.2);
+
+  box-shadow: 0 0 20px rgba(255, 49, 95, 0.08);
+}
+
+.ghost-contact-item strong {
+  display: block;
+  color: #fff;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.ghost-contact-item span {
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 13px;
+}
+
+/* FORM */
+
+.ghost-contact-form form {
+  display: grid;
+  gap: 18px;
+}
+
+.ghost-contact-field {
+  display: grid;
+  gap: 8px;
+}
+
+.ghost-contact-field label {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+}
+
+.ghost-contact-field input,
+.ghost-contact-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 14px 16px;
+
+  border-radius: 13px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+
+  outline: none;
+  font-family: inherit;
+
+  transition: 0.25s ease;
+}
+
+.ghost-contact-field textarea {
+  min-height: 145px;
+  resize: vertical;
+}
+
+.ghost-contact-field input::placeholder,
+.ghost-contact-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.ghost-contact-field input:focus,
+.ghost-contact-field textarea:focus {
+  border-color: rgba(255, 49, 95, 0.65);
+  box-shadow:
+    0 0 0 3px rgba(255, 49, 95, 0.07),
+    0 0 25px rgba(255, 49, 95, 0.08);
+}
+
+.ghost-contact-submit {
+  margin-top: 5px;
+  padding: 15px 22px;
+
+  border: 0;
+  border-radius: 13px;
+
+  background: linear-gradient(
+    135deg,
+    #ff174f,
+    #b90036
+  );
+
+  color: #fff;
+  font-weight: 900;
+  letter-spacing: 1px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 30px rgba(255, 0, 70, 0.2),
+    0 0 25px rgba(255, 0, 70, 0.12);
+
+  transition: 0.25s ease;
+}
+
+.ghost-contact-submit:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 15px 40px rgba(255, 0, 70, 0.3),
+    0 0 35px rgba(255, 0, 70, 0.18);
+}
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+  .ghost-contact-page {
+    padding: 100px 20px 60px;
+  }
+
+  .ghost-contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ghost-contact-info,
+  .ghost-contact-form {
+    padding: 24px;
+  }
+}

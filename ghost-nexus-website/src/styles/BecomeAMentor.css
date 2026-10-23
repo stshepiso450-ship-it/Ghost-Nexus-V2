@@ -1,0 +1,364 @@
+.mentor-application-page {
+  min-height: 100vh;
+  padding: 110px 24px 80px;
+  background:
+    radial-gradient(
+      circle at 10% 15%,
+      rgba(255, 23, 68, 0.09),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 90% 85%,
+      rgba(255, 23, 68, 0.06),
+      transparent 32%
+    ),
+    #050609;
+  color: #ffffff;
+}
+
+.mentor-application-wrapper {
+  width: min(1250px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 60px;
+  align-items: start;
+}
+
+/* INTRO */
+
+.mentor-application-intro {
+  position: sticky;
+  top: 100px;
+}
+
+.mentor-back-home {
+  display: inline-block;
+  margin-bottom: 55px;
+  color: #788293;
+  text-decoration: none;
+  font-size: 12px;
+  transition: 0.2s ease;
+}
+
+.mentor-back-home:hover {
+  color: #ffffff;
+}
+
+.mentor-application-label {
+  color: #ff1744;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.mentor-application-intro h1 {
+  margin: 20px 0;
+  font-size: clamp(48px, 5vw, 76px);
+  line-height: 0.95;
+  letter-spacing: -4px;
+}
+
+.mentor-application-intro h1 span {
+  color: #ff1744;
+}
+
+.mentor-application-intro > p {
+  max-width: 570px;
+  color: #8993a4;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* BENEFITS */
+
+.mentor-benefits {
+  margin-top: 50px;
+}
+
+.mentor-benefit {
+  display: flex;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.mentor-benefit > span {
+  color: #ff1744;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.mentor-benefit strong {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.mentor-benefit p {
+  margin: 0;
+  color: #687283;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* CARD */
+
+.mentor-application-card {
+  padding: 38px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.025);
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.35),
+    inset 0 0 60px rgba(255, 23, 68, 0.02);
+  backdrop-filter: blur(18px);
+}
+
+.mentor-card-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: flex-start;
+  padding-bottom: 25px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.mentor-card-header span {
+  color: #ff1744;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.mentor-card-header h2 {
+  margin: 8px 0 0;
+  font-size: 25px;
+}
+
+.mentor-card-status {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 11px;
+  border: 1px solid rgba(0, 255, 157, 0.15);
+  border-radius: 999px;
+  color: #73d9ae;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.mentor-card-status span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00ff9d;
+}
+
+/* MESSAGE */
+
+.mentor-form-message {
+  margin-bottom: 22px;
+  padding: 14px 16px;
+  border-radius: 9px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.mentor-form-message.success {
+  border: 1px solid rgba(0, 255, 157, 0.2);
+  background: rgba(0, 255, 157, 0.06);
+  color: #7be0b4;
+}
+
+.mentor-form-message.error {
+  border: 1px solid rgba(255, 23, 68, 0.25);
+  background: rgba(255, 23, 68, 0.06);
+  color: #ff7d96;
+}
+
+/* FORM */
+
+.mentor-application-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mentor-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.mentor-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mentor-field label {
+  color: #aab2c0;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.mentor-field input,
+.mentor-field select,
+.mentor-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  outline: none;
+  border-radius: 9px;
+  background: rgba(0, 0, 0, 0.22);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  transition: 0.2s ease;
+}
+
+.mentor-field input,
+.mentor-field select {
+  height: 48px;
+  padding: 0 14px;
+}
+
+.mentor-field textarea {
+  padding: 14px;
+  resize: vertical;
+  min-height: 140px;
+}
+
+.mentor-field input::placeholder,
+.mentor-field textarea::placeholder {
+  color: #4e5767;
+}
+
+.mentor-field select {
+  appearance: none;
+}
+
+.mentor-field select option {
+  background: #111318;
+  color: #ffffff;
+}
+
+.mentor-field input:focus,
+.mentor-field select:focus,
+.mentor-field textarea:focus {
+  border-color: rgba(255, 23, 68, 0.65);
+  box-shadow: 0 0 0 3px rgba(255, 23, 68, 0.06);
+}
+
+/* FOOTER */
+
+.mentor-form-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+  margin-top: 5px;
+}
+
+.mentor-form-footer p {
+  max-width: 430px;
+  margin: 0;
+  color: #596374;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.mentor-submit-button {
+  min-width: 190px;
+  height: 50px;
+  border: 0;
+  border-radius: 9px;
+  background: #ff1744;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  transition: 0.25s ease;
+}
+
+.mentor-submit-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(255, 23, 68, 0.22);
+}
+
+.mentor-submit-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.mentor-login-link {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin-top: 25px;
+  color: #606a7a;
+  font-size: 11px;
+}
+
+.mentor-login-link button {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #ff1744;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 800;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+  .mentor-application-wrapper {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .mentor-application-intro {
+    position: static;
+  }
+
+  .mentor-back-home {
+    margin-bottom: 35px;
+  }
+}
+
+@media (max-width: 650px) {
+  .mentor-application-page {
+    padding: 90px 14px 50px;
+  }
+
+  .mentor-application-intro h1 {
+    font-size: 49px;
+    letter-spacing: -3px;
+  }
+
+  .mentor-application-card {
+    padding: 22px;
+  }
+
+  .mentor-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mentor-card-header {
+    flex-direction: column;
+  }
+
+  .mentor-form-footer {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .mentor-submit-button {
+    width: 100%;
+  }
+}

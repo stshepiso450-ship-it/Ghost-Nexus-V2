@@ -1,0 +1,435 @@
+/* =====================================
+   GHOST NEXUS NOTIFICATION SETTINGS
+   GLASS CYBER STYLE
+===================================== */
+
+
+.notification-card{
+
+
+    width:100%;
+
+
+    padding:25px;
+
+
+    border-radius:28px;
+
+
+    background:
+
+
+    linear-gradient(
+
+        145deg,
+
+        rgba(255,255,255,.12),
+
+        rgba(255,255,255,.04)
+
+    );
+
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.18);
+
+
+
+    backdrop-filter:
+
+
+    blur(25px);
+
+
+
+    color:white;
+
+
+
+    box-shadow:
+
+
+    0 20px 50px rgba(0,0,0,.45);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* HEADER */
+
+
+.notification-header{
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    gap:18px;
+
+
+    margin-bottom:25px;
+
+
+}
+
+
+
+
+
+.notification-icon{
+
+
+    width:65px;
+
+
+    height:65px;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    font-size:32px;
+
+
+    border-radius:22px;
+
+
+    background:
+
+
+    rgba(255,0,79,.15);
+
+
+
+    box-shadow:
+
+
+    0 0 30px rgba(255,0,79,.5);
+
+
+}
+
+
+
+
+
+.notification-header h2{
+
+
+    margin:0;
+
+
+    font-size:24px;
+
+
+}
+
+
+
+
+.notification-header p{
+
+
+    color:#aaa;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ROWS */
+
+
+.notification-row{
+
+
+    display:flex;
+
+
+    justify-content:space-between;
+
+
+    align-items:center;
+
+
+    padding:20px;
+
+
+    margin-bottom:15px;
+
+
+    border-radius:20px;
+
+
+    background:
+
+
+    rgba(0,0,0,.25);
+
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.1);
+
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.notification-row:hover{
+
+
+    border-color:#ff004f;
+
+
+    transform:translateY(-2px);
+
+
+}
+
+
+
+
+
+
+
+.notification-row h4{
+
+
+    margin:0;
+
+
+}
+
+
+
+
+
+
+.notification-row span{
+
+
+    color:#888;
+
+
+    font-size:13px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* TOGGLE */
+
+
+.notification-toggle{
+
+
+    padding:12px 28px;
+
+
+    border-radius:30px;
+
+
+    background:
+
+
+    rgba(255,255,255,.08);
+
+
+
+    border:
+
+
+    1px solid rgba(255,255,255,.2);
+
+
+
+    color:white;
+
+
+    cursor:pointer;
+
+
+    transition:.35s;
+
+
+}
+
+
+
+
+
+
+
+.notification-toggle:hover{
+
+
+    transform:scale(1.05);
+
+
+}
+
+
+
+
+
+
+
+.notification-toggle.active{
+
+
+    background:
+
+
+    linear-gradient(
+
+        135deg,
+
+        #ff004f,
+
+        #ff4b91
+
+    );
+
+
+
+    box-shadow:
+
+
+    0 0 30px rgba(255,0,79,.6);
+
+
+}
+
+
+
+
+
+
+
+
+
+/* PREVIEW */
+
+
+.notification-preview{
+
+
+    margin-top:25px;
+
+
+    padding:25px;
+
+
+    text-align:center;
+
+
+    border-radius:22px;
+
+
+    background:
+
+
+    rgba(255,0,79,.12);
+
+
+
+    border:
+
+
+    1px solid #ff004f;
+
+
+
+    color:#ff4b91;
+
+
+    font-size:18px;
+
+
+    line-height:1.8;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:700px){
+
+
+    .notification-row{
+
+
+        flex-direction:column;
+
+
+        align-items:flex-start;
+
+
+        gap:15px;
+
+
+    }
+
+
+
+
+    .notification-toggle{
+
+
+        width:100%;
+
+
+    }
+
+
+}

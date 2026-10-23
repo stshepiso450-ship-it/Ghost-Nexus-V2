@@ -1,0 +1,301 @@
+import React, { useEffect, useState } from "react";
+import {
+  Upload,
+  CheckCircle,
+  Clock,
+  CreditCard,
+  Package,
+  Send,
+} from "lucide-react";
+
+import mql5Api from "../../services/mql5Api";
+import "./AdminMQL5Orders.css";
+
+export default function AdminMQL5Orders() {
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(null);
+  const [releasing, setReleasing] = useState(null);
+  const [testingPayment, setTestingPayment] = useState(null);
+
+  async function loadOrders() {
+    try {
+      setLoading(true);
+
+      const data = await mql5Api.adminList();
+
+      setOrders(
+        Array.isArray(data)
+          ? data
+          : data.orders || []
+      );
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    loadOrders();
+  }, []);
+
+  async function upload(orderId, event) {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    if (!file.name.toLowerCase().endsWith(".ex5")) {
+      window.alert(
+        "Please upload a compiled MQL5 .ex5 file."
+      );
+
+      return;
+    }
+
+    try {
+      setUploading(orderId);
+
+      await mql5Api.uploadEA(orderId, file);
+
+      await loadOrders();
+    } catch (error) {
+      window.alert(error.message);
+    } finally {
+      setUploading(null);
+      event.target.value = "";
+    }
+  }
+
+  async function release(orderId) {
+    const confirmed = window.confirm(
+      "Release this EA to the mentor?"
+    );
+
+    if (!confirmed) return;
+
+    try {
+      setReleasing(orderId);
+
+      await mql5Api.release(orderId);
+
+      await loadOrders();
+    } catch (error) {
+      window.alert(error.message);
+    } finally {
+      setReleasing(null);
+    }
+  }
+
+  async function markTestPaid(orderId) {
+    const confirmed = window.confirm(
+      "SIMULATION ONLY: Mark this TEST order as paid? No real payment will be received."
+    );
+
+    if (!confirmed) return;
+
+    try {
+      setTestingPayment(orderId);
+
+      const apiBase = (
+        import.meta.env.VITE_API_URL || "http://127.0.0.1:8000"
+      ).replace(/\/+$/, "");
+
+      const response = await fetch(
+        `${apiBase}/admin/mql5/orders/${orderId}/test-payment`,
+        { method: "POST" }
+      );
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(
+          data.detail || "Could not simulate the test payment."
+        );
+      }
+
+      await loadOrders();
+
+      window.alert(
+        data.message || "Test payment simulation completed. No money was received."
+      );
+    } catch (error) {
+      window.alert(error.message || "Test payment simulation failed.");
+    } finally {
+      setTestingPayment(null);
+    }
+  }
+
+  return (
+    <section className="admin-page">
+      <div className="admin-page-header">
+        <div>
+          <div className="admin-eyebrow">
+            MQL5 MANAGEMENT
+          </div>
+
+          <h1>MQL5 Orders</h1>
+
+          <p>
+            Build, upload and release paid MQL5 EAs to
+            mentors.
+          </p>
+        </div>
+      </div>
+
+      {loading ? (
+        <div className="admin-loading">
+          Loading MQL5 orders...
+        </div>
+      ) : orders.length === 0 ? (
+        <div className="admin-empty">
+          <Package size={35} />
+          <p>No MQL5 orders found.</p>
+        </div>
+      ) : (
+        <div className="mql5-order-list">
+          {orders.map((order) => (
+            <article
+              className="mql5-order-card"
+              key={order.id}
+            >
+              <div className="mql5-order-header">
+                <div>
+                  <span className="order-number">
+                    #
+                    {order.order_number ||
+                      order.id}
+                  </span>
+
+                  <h2>
+                    {order.ea_name || order.product_name || "Ghost Nexus EA"}
+                  </h2>
+                </div>
+
+                <div
+                  className={`mql5-status ${
+                    order.status || "pending"
+                  }`}
+                >
+                  {order.status === "paid" ? (
+                    <CreditCard size={15} />
+                  ) : (order.asset_status === "RELEASED" || order.ea?.released) ? (
+                    <CheckCircle size={15} />
+                  ) : (
+                    <Clock size={15} />
+                  )}
+
+                  {order.asset_status === "RELEASED" || order.ea?.released ? "released" : order.payment_status || order.status || "pending"}
+                </div>
+              </div>
+
+              <div className="mql5-order-info">
+                <div>
+                  <span>Mentor</span>
+                  <strong>
+                    {order.mentor_name || "—"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Mentor ID</span>
+                  <strong>
+                    {order.mentor_id || "—"}
+                  </strong>
+                </div>
+
+                <div style={{ gridColumn: "1 / -1", minWidth: 0 }}>
+                  <span>Mentor Email</span>
+                  <strong style={{ overflowWrap: "anywhere" }}>
+                    {order.mentor_email || "Not provided"}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Price</span>
+                  <strong>
+                    ${Number(
+                      order.amount ?? order.price ?? 15
+                    ).toFixed(2)}
+                  </strong>
+                </div>
+
+                <div>
+                  <span>Payment</span>
+                  <strong className="paid-text">
+                    {order.payment_status ||
+                      "pending"}
+                  </strong>
+                </div>
+              </div>
+
+              <div className="mql5-order-actions">
+                {String(order.product_name || order.ea_name || "")
+                  .toUpperCase()
+                  .includes("TEST") &&
+                  order.payment_status !== "paid" &&
+                  order.asset_status !== "RELEASED" &&
+                  !order.ea?.released && (
+                    <button
+                      type="button"
+                      className="release-ea-button"
+                      disabled={testingPayment === order.id}
+                      onClick={() => markTestPaid(order.id)}
+                    >
+                      {testingPayment === order.id
+                        ? "Simulating..."
+                        : "Mark TEST Paid (Simulation)"}
+                    </button>
+                  )}
+                {order.payment_status ===
+                  "paid" &&
+                  order.asset_status !== "RELEASED" && !order.ea?.released && (
+                    <label className="upload-ea-button">
+                      <Upload size={16} />
+
+                      {uploading === order.id
+                        ? "Uploading..."
+                        : "Upload .EX5"}
+
+                      <input
+                        type="file"
+                        accept=".ex5"
+                        hidden
+                        disabled={
+                          uploading === order.id
+                        }
+                        onChange={(event) =>
+                          upload(
+                            order.id,
+                            event
+                          )
+                        }
+                      />
+                    </label>
+                  )}
+
+                {order.payment_status === "paid" && (order.asset_status === "READY" || order.ea?.uploaded) && order.asset_status !== "RELEASED" && !order.ea?.released && (
+                  <button
+                    className="release-ea-button"
+                    disabled={
+                      releasing === order.id
+                    }
+                    onClick={() =>
+                      release(order.id)
+                    }
+                  >
+                    <Send size={16} />
+
+                    {releasing === order.id
+                      ? "Releasing..."
+                      : "Release to Mentor"}
+                  </button>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}

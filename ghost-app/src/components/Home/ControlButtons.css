@@ -1,0 +1,169 @@
+/* ==========================================
+   ROBOT CONTROLS
+========================================== */
+
+.robot-controls{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.robot-controls h2{
+
+    color:#ffffff;
+
+    font-size:20px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    margin:0;
+
+}
+
+.controls-buttons{
+
+    width:100%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.controls-buttons button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    border-radius:14px;
+
+    padding:14px 22px;
+
+    color:#fff;
+
+    backdrop-filter:blur(15px);
+
+}
+
+/* ==========================================
+   POWER BUTTON
+========================================== */
+
+.power-button{
+
+    min-width:110px;
+
+    box-shadow:0 0 20px rgba(255,0,0,.25);
+
+}
+
+.power-button.on{
+
+    background:linear-gradient(135deg,#00ff88,#00aa55);
+
+}
+
+.power-button.off{
+
+    background:linear-gradient(135deg,#ff4444,#990000);
+
+}
+
+.power-button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 0 25px rgba(255,0,0,.45);
+
+}
+
+/* ==========================================
+   REMOVE BUTTON
+========================================== */
+
+.remove-button{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.remove-button:hover{
+
+    background:#ff3b30;
+
+    box-shadow:0 0 20px rgba(255,59,48,.5);
+
+}
+
+/* ==========================================
+   QUOTES BUTTON
+========================================== */
+
+.quotes-button{
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.quotes-button:hover{
+
+    background:#1f6fff;
+
+    box-shadow:0 0 20px rgba(0,110,255,.45);
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.controls-buttons{
+
+    flex-direction:column;
+
+}
+
+.controls-buttons button{
+
+    width:100%;
+
+    max-width:280px;
+
+}
+
+}

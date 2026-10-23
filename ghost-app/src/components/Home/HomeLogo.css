@@ -1,0 +1,222 @@
+/* ===========================
+   HOME LOGO
+=========================== */
+
+.home-logo-container{
+
+    position:relative;
+
+    width:220px;
+
+    height:220px;
+
+    margin:40px auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    animation:floatLogo 5s ease-in-out infinite;
+
+}
+
+/* ===========================
+   LOGO
+=========================== */
+
+.home-logo{
+
+    width:150px;
+
+    height:150px;
+
+    object-fit:contain;
+
+    position:relative;
+
+    z-index:5;
+
+    transition:.4s;
+
+    filter:drop-shadow(0 0 18px var(--primary,#ff004f));
+
+}
+
+.home-logo:hover{
+
+    transform:scale(1.06);
+
+}
+
+/* ===========================
+   OUTER RING
+=========================== */
+
+.logo-ring{
+
+    position:absolute;
+
+    width:200px;
+
+    height:200px;
+
+    border-radius:50%;
+
+    border:2px solid rgba(255,255,255,.08);
+
+    border-top:2px solid var(--primary,#ff004f);
+
+    border-right:2px solid rgba(255,255,255,.25);
+
+    animation:spinRing 12s linear infinite;
+
+    backdrop-filter:blur(20px);
+
+}
+
+/* ===========================
+   GLOW
+=========================== */
+
+.logo-glow{
+
+    position:absolute;
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        circle,
+        rgba(255,0,79,.35),
+        rgba(255,0,79,.08),
+        transparent
+    );
+
+    filter:blur(35px);
+
+    animation:pulseGlow 3s ease-in-out infinite;
+
+}
+
+/* ===========================
+   FLOAT
+=========================== */
+
+@keyframes floatLogo{
+
+    0%{
+
+        transform:translateY(0px);
+
+    }
+
+    50%{
+
+        transform:translateY(-10px);
+
+    }
+
+    100%{
+
+        transform:translateY(0px);
+
+    }
+
+}
+
+/* ===========================
+   SPIN
+=========================== */
+
+@keyframes spinRing{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ===========================
+   PULSE
+=========================== */
+
+@keyframes pulseGlow{
+
+    0%{
+
+        transform:scale(.95);
+
+        opacity:.6;
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(.95);
+
+        opacity:.6;
+
+    }
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:768px){
+
+.home-logo-container{
+
+    width:170px;
+
+    height:170px;
+
+}
+
+.logo-ring{
+
+    width:155px;
+
+    height:155px;
+
+}
+
+.logo-glow{
+
+    width:130px;
+
+    height:130px;
+
+}
+
+.home-logo{
+
+    width:120px;
+
+    height:120px;
+
+}
+
+}
